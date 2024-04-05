@@ -28,7 +28,7 @@ extension SegementSlideViewController {
                 resetOtherCachedChildViewControllerContentOffsetY()
             }
         case .child:
-            let childBouncesTranslationY = -parentScrollView.panGestureRecognizer.translation(in: parentScrollView).y.rounded(.up)
+            let childBouncesTranslationY = -parentScrollView.panGestureRecognizer.translation(in: parentScrollView).y
             defer {
                 lastChildBouncesTranslationY = childBouncesTranslationY
             }
