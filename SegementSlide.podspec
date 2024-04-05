@@ -11,11 +11,11 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://github.com/Jiar'
 
   s.platform = :ios
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '12.0'
 
   s.source = { :git => 'https://github.com/Jiar/SegementSlide.git', :tag => "#{s.version}" }
   s.ios.framework  = 'UIKit'
-  s.ios.source_files = 'Source/*.swift', 'Source/**/*.swift'
+  s.ios.source_files = 'Sources/SegementSlide/*.swift', 'Sources/SegementSlide/**/*.swift'
 
   s.module_name = 'SegementSlide'
   s.requires_arc = true
