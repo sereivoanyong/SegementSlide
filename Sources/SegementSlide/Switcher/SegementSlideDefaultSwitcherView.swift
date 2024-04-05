@@ -13,7 +13,7 @@ public enum SwitcherType {
     case segement
 }
 
-public protocol SegementSlideDefaultSwitcherViewDelegate: class {
+public protocol SegementSlideDefaultSwitcherViewDelegate: AnyObject {
     var titlesInSegementSlideSwitcherView: [String] { get }
     
     func segementSwitcherView(_ segementSlideSwitcherView: SegementSlideDefaultSwitcherView, didSelectAtIndex index: Int, animated: Bool)
@@ -45,16 +45,14 @@ public class SegementSlideDefaultSwitcherView: UIView {
         setup()
     }
     
-    public required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    public required init?(coder: NSCoder) {
+        super.init(coder: coder)
         setup()
     }
     
     private func setup() {
         addSubview(scrollView)
-        if #available(iOS 11.0, *) {
-            scrollView.contentInsetAdjustmentBehavior = .never
-        }
+        scrollView.contentInsetAdjustmentBehavior = .never
         scrollView.constraintToSuperview()
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false

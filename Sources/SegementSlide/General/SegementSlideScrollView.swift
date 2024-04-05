@@ -17,7 +17,7 @@ public class SegementSlideScrollView: UIScrollView, UIGestureRecognizerDelegate 
         super.init(frame: .zero)
     }
     
-    internal required init?(coder aDecoder: NSCoder) {
+    internal required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     

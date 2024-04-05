@@ -87,13 +87,9 @@ open class TransparentSlideViewController: SegementSlideViewController {
         } else {
             titleSize = CGSize(width: view.bounds.width*3/5, height: 44)
         }
-        if #available(iOS 11, *) {
-            titleLabel.translatesAutoresizingMaskIntoConstraints = false
-            titleLabel.widthConstraint = titleLabel.widthAnchor.constraint(equalToConstant: titleSize.width)
-            titleLabel.heightConstraint = titleLabel.heightAnchor.constraint(equalToConstant: titleSize.height)
-        } else {
-            titleLabel.bounds = CGRect(origin: .zero, size: titleSize)
-        }
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.widthConstraint = titleLabel.widthAnchor.constraint(equalToConstant: titleSize.width)
+        titleLabel.heightConstraint = titleLabel.heightAnchor.constraint(equalToConstant: titleSize.height)
     }
     
     public override func reloadData() {

@@ -18,8 +18,8 @@ public class SegementSlideHeaderView: UIView {
         setup()
     }
     
-    internal required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    internal required init?(coder: NSCoder) {
+        super.init(coder: coder)
         setup()
     }
     

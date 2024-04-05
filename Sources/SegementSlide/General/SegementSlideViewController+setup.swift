@@ -54,11 +54,7 @@ extension SegementSlideViewController {
     private func setupSegementSlideScrollView() {
         view.addSubview(scrollView)
         scrollView.constraintToSuperview()
-        if #available(iOS 11.0, *) {
-            scrollView.contentInsetAdjustmentBehavior = .never
-        } else {
-            automaticallyAdjustsScrollViewInsets = false
-        }
+        scrollView.contentInsetAdjustmentBehavior = .never
         scrollView.backgroundColor = .white
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
@@ -97,7 +93,7 @@ extension SegementSlideViewController {
         if edgesForExtendedLayout.contains(.top) {
             topLayoutLength = 0
         } else {
-            topLayoutLength = self.topLayoutLength
+            topLayoutLength = view.safeAreaInsets.top
         }
         
         headerView.translatesAutoresizingMaskIntoConstraints = false
@@ -124,11 +120,7 @@ extension SegementSlideViewController {
         }
         if safeAreaTopConstraint == nil {
             safeAreaTopConstraint?.isActive = false
-            if #available(iOS 11, *) {
-                safeAreaTopConstraint = switcherView.topAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor)
-            } else {
-                safeAreaTopConstraint = switcherView.topAnchor.constraint(greaterThanOrEqualTo: topLayoutGuide.bottomAnchor)
-            }
+            safeAreaTopConstraint = switcherView.topAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor)
             safeAreaTopConstraint?.isActive = true
         }
         if switcherView.leadingConstraint == nil {

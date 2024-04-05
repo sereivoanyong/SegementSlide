@@ -15,7 +15,7 @@ public protocol SegementSlideContentScrollViewDelegate where Self: UIViewControl
     @objc optional var scrollView: UIScrollView { get }
 }
 
-public protocol SegementSlideContentDelegate: class {
+public protocol SegementSlideContentDelegate: AnyObject {
     var segementSlideContentScrollViewCount: Int { get }
     
     func segementSlideContentScrollView(at index: Int) -> SegementSlideContentScrollViewDelegate?
@@ -48,16 +48,14 @@ public class SegementSlideContentView: UIView {
         setup()
     }
     
-    public required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    public required init?(coder: NSCoder) {
+        super.init(coder: coder)
         setup()
     }
     
     private func setup() {
         addSubview(scrollView)
-        if #available(iOS 11.0, *) {
-            scrollView.contentInsetAdjustmentBehavior = .never
-        }
+        scrollView.contentInsetAdjustmentBehavior = .never
         scrollView.constraintToSuperview()
         scrollView.delegate = self
         scrollView.isScrollEnabled = true
