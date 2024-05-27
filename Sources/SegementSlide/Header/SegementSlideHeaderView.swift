@@ -13,20 +13,6 @@ public class SegementSlideHeaderView: UIView {
     private weak var lastHeaderView: UIView?
     private weak var contentView: SegementSlideContentView?
     
-    internal override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-    
-    internal required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setup()
-    }
-    
-    private func setup() {
-        backgroundColor = .clear
-    }
-    
     internal func config(_ headerView: UIView?, contentView: SegementSlideContentView) {
         guard headerView != lastHeaderView else {
             return

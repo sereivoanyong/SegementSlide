@@ -57,8 +57,6 @@ public class SegementSlideDefaultSwitcherView: UIView {
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
         scrollView.scrollsToTop = false
-        scrollView.backgroundColor = .clear
-        backgroundColor = .white
     }
     
     public override func layoutSubviews() {
@@ -159,7 +157,6 @@ extension SegementSlideDefaultSwitcherView {
             let button = UIButton(type: .custom)
             button.clipsToBounds = false
             button.titleLabel?.font = innerConfig.normalTitleFont
-            button.backgroundColor = .clear
             button.setTitle(title, for: .normal)
             button.tag = index
             button.setTitleColor(innerConfig.normalTitleColor, for: .normal)

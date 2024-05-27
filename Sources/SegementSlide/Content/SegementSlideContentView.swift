@@ -62,8 +62,6 @@ public class SegementSlideContentView: UIView {
         scrollView.isPagingEnabled = true
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
-        scrollView.backgroundColor = .clear
-        backgroundColor = .white
     }
     
     public override func layoutSubviews() {
