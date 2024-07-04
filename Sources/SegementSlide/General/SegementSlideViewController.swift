@@ -13,7 +13,7 @@ public enum BouncesType {
     case child
 }
 
-open class SegementSlideViewController: UIViewController {
+open class SegementSlideViewController: UIViewController, SegementSlideHeaderViewDelegate {
     
     public internal(set) var scrollView: SegementSlideScrollView!
     public internal(set) var headerView: SegementSlideHeaderView!
@@ -174,4 +174,13 @@ open class SegementSlideViewController: UIViewController {
         #endif
     }
     
+    open func headerView(_ headerView: SegementSlideHeaderView, add view: UIView) {
+        headerView.addSubview(view)
+        view.constraintToSuperview()
+    }
+
+    open func headerView(_ headerView: SegementSlideHeaderView, remove view: UIView) {
+        view.removeFromSuperview()
+        view.removeAllConstraints()
+    }
 }

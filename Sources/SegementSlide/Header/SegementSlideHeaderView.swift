@@ -8,31 +8,35 @@
 
 import UIKit
 
+public protocol SegementSlideHeaderViewDelegate: AnyObject {
+
+    func headerView(_ headerView: SegementSlideHeaderView, remove view: UIView)
+    func headerView(_ headerView: SegementSlideHeaderView, add view: UIView)
+}
+
 public class SegementSlideHeaderView: UIView {
     
     private weak var lastHeaderView: UIView?
-    private weak var contentView: SegementSlideContentView?
-    
-    internal func config(_ headerView: UIView?, contentView: SegementSlideContentView) {
+    weak var contentView: SegementSlideContentView?
+
+    weak var delegate: SegementSlideHeaderViewDelegate?
+
+    internal func config(_ headerView: UIView?) {
         guard headerView != lastHeaderView else {
             return
         }
-        if let lastHeaderView = lastHeaderView {
-            lastHeaderView.removeAllConstraints()
-            lastHeaderView.removeFromSuperview()
+        if let lastHeaderView {
+            delegate?.headerView(self, remove: lastHeaderView)
         }
-        guard let headerView = headerView else {
-            return
+        if let headerView {
+            delegate?.headerView(self, add: headerView)
+            lastHeaderView = headerView
         }
-        self.contentView = contentView
-        addSubview(headerView)
-        headerView.constraintToSuperview()
-        lastHeaderView = headerView
     }
     
     public override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         let view = super.hitTest(point, with: event)
-        guard let contentView = contentView else {
+        guard let contentView else {
             return view
         }
         guard let selectedIndex = contentView.selectedIndex,

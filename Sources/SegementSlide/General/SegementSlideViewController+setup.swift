@@ -13,13 +13,26 @@ extension SegementSlideViewController {
     internal func setup() {
         extendedLayoutIncludesOpaqueBars = true
         edgesForExtendedLayout = []
-        setupSegementSlideViews()
         setupSegementSlideScrollView()
+        setupSegementSlideViews()
         setupSegementSlideHeaderView()
         setupSegementSlideContentView()
         setupSegementSlideSwitcherView()
         observeScrollViewContentOffset()
         observeWillCleanUpAllReusableViewControllersNotification()
+    }
+    
+    private func setupSegementSlideScrollView() {
+        scrollView = SegementSlideScrollView()
+        scrollView.contentInsetAdjustmentBehavior = .never
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.isPagingEnabled = false
+        scrollView.isScrollEnabled = true
+        scrollView.scrollsToTop = true
+        scrollView.delegate = self
+        view.addSubview(scrollView)
+        scrollView.constraintToSuperview()
     }
     
     private func setupSegementSlideViews() {
@@ -33,10 +46,12 @@ extension SegementSlideViewController {
         if let gestureRecognizersInScrollView = contentView.scrollView.gestureRecognizers {
             gestureRecognizers.append(contentsOf: gestureRecognizersInScrollView)
         }
-        scrollView = SegementSlideScrollView(otherGestureRecognizers: gestureRecognizers)
+
+        scrollView.otherGestureRecognizers = gestureRecognizers
     }
     
     private func setupSegementSlideHeaderView() {
+        headerView.delegate = self
         scrollView.addSubview(headerView)
     }
     
@@ -48,18 +63,6 @@ extension SegementSlideViewController {
     
     internal func setupSegementSlideSwitcherView() {
         scrollView.addSubview(switcherView)
-    }
-    
-    private func setupSegementSlideScrollView() {
-        view.addSubview(scrollView)
-        scrollView.constraintToSuperview()
-        scrollView.contentInsetAdjustmentBehavior = .never
-        scrollView.showsHorizontalScrollIndicator = false
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.isPagingEnabled = false
-        scrollView.isScrollEnabled = true
-        scrollView.scrollsToTop = true
-        scrollView.delegate = self
     }
     
     private func observeScrollViewContentOffset() {
@@ -108,7 +111,7 @@ extension SegementSlideViewController {
         if headerView.trailingConstraint == nil {
             headerView.trailingConstraint = headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         }
-        headerView.config(innerHeaderView, contentView: contentView)
+        headerView.config(innerHeaderView)
         
         switcherView.translatesAutoresizingMaskIntoConstraints = false
         if switcherView.topConstraint == nil {
@@ -148,12 +151,6 @@ extension SegementSlideViewController {
         if contentView.bottomConstraint == nil {
             contentView.bottomConstraint = contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         }
-        
-        headerView.layer.zPosition = -3
-        contentView.layer.zPosition = -2
-        switcherView.layer.zPosition = -1
-        
-        headerView.layoutIfNeeded()
         
         let innerHeaderHeight = headerView.frame.height
         let contentSize = CGSize(width: view.bounds.width, height: topLayoutLength+innerHeaderHeight+switcherHeight+contentViewHeight+1)
