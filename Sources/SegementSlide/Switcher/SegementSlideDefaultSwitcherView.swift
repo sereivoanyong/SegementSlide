@@ -14,7 +14,7 @@ public enum SwitcherType {
 }
 
 public protocol SegementSlideDefaultSwitcherViewDelegate: AnyObject {
-    var titlesInSegementSlideSwitcherView: [String] { get }
+    var itemsInSegementSlideSwitcherView: [SegementSlideSwitcherItem] { get }
     
     func segementSwitcherView(_ segementSlideSwitcherView: SegementSlideDefaultSwitcherView, didSelectAtIndex index: Int, animated: Bool)
     func segementSwitcherView(_ segementSlideSwitcherView: SegementSlideDefaultSwitcherView, showBadgeAtIndex index: Int) -> BadgeType
@@ -149,15 +149,15 @@ extension SegementSlideDefaultSwitcherView {
         indicatorView.frame = .zero
         scrollView.isScrollEnabled = innerConfig.type == .segement
         innerConfig = config
-        guard let titles = delegate?.titlesInSegementSlideSwitcherView,
-            !titles.isEmpty else {
+        guard let items = delegate?.itemsInSegementSlideSwitcherView,
+            !items.isEmpty else {
             return
         }
-        for (index, title) in titles.enumerated() {
+        for (index, item) in items.enumerated() {
             let button = UIButton(type: .custom)
             button.clipsToBounds = false
             button.titleLabel?.font = innerConfig.normalTitleFont
-            button.setTitle(title, for: .normal)
+            button.setTitle(item.title, for: .normal)
             button.tag = index
             button.setTitleColor(innerConfig.normalTitleColor, for: .normal)
             button.addTarget(self, action: #selector(didClickTitleButton), for: .touchUpInside)
