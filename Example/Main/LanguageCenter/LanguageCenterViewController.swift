@@ -66,11 +66,11 @@ class LanguageCenterViewController: BaseTransparentSlideDefaultViewController {
         return config
     }
     
-    override var titlesInSwitcher: [String] {
+    override var itemsInSwitcher: [SegementSlideSwitcherItem] {
         guard let _ = language else {
             return []
         }
-        return DataManager.shared.languageCenterTitles
+        return DataManager.shared.languageCenterTitles.map { .text($0) }
     }
     
     override func showBadgeInSwitcher(at index: Int) -> BadgeType {

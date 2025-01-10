@@ -21,7 +21,7 @@ extension SegementSlideViewController: UIScrollViewDelegate {
 extension SegementSlideViewController: SegementSlideContentDelegate {
     
     public var segementSlideContentScrollViewCount: Int {
-        return switcherView.ssDataSource?.titles.count ?? 0
+        return switcherView.ssDataSource?.items.count ?? 0
     }
     
     public func segementSlideContentScrollView(at index: Int) -> SegementSlideContentScrollViewDelegate? {

@@ -60,20 +60,11 @@ class LanguageCenterViewController2: BaseTransparentSlideCustomViewController {
         return centerHeaderView
     }
     
-    override var titlesInSwitcher: [String] {
+    override var itemsInSwitcher: [SegementSlideSwitcherItem] {
         guard let _ = language else {
             return []
         }
-        return DataManager.shared.languageCenterTitles
-    }
-    
-    override var badgesInSwitcher: [Int] {
-        guard let _ = language else {
-            return []
-        }
-        let count = DataManager.shared.languageCenterTitles.count
-        let badges = (0 ..< count).map({ _ in Int.random(in: 0..<10) })
-        return badges
+        return DataManager.shared.languageCenterTitles.map { .textBadgeNumber($0, .random(in: 0..<10)) }
     }
     
     override func segementSlideContentViewController(at index: Int) -> SegementSlideContentScrollViewDelegate? {

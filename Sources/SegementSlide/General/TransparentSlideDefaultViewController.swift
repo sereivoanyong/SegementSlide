@@ -30,7 +30,7 @@ open class TransparentSlideDefaultViewController: TransparentSlideViewController
         return 44
     }
     
-    open var titlesInSwitcher: [String] {
+    open var itemsInSwitcher: [SegementSlideSwitcherItem] {
         return []
     }
     
@@ -51,16 +51,16 @@ extension TransparentSlideDefaultViewController: SegementSlideSwitcherDataSource
         return switcherHeight
     }
     
-    public var titles: [String] {
-        return titlesInSwitcher
+    public var items: [SegementSlideSwitcherItem] {
+        return itemsInSwitcher
     }
     
 }
 
 extension TransparentSlideDefaultViewController: SegementSlideDefaultSwitcherViewDelegate {
     
-    public var titlesInSegementSlideSwitcherView: [String] {
-        return switcherView.ssDataSource?.titles ?? []
+    public var itemsInSegementSlideSwitcherView: [SegementSlideSwitcherItem] {
+        return switcherView.ssDataSource?.items ?? []
     }
     
     public func segementSwitcherView(_ segementSlideSwitcherView: SegementSlideDefaultSwitcherView, didSelectAtIndex index: Int, animated: Bool) {

@@ -31,8 +31,8 @@ class PostViewController: BaseSegementSlideDefaultViewController {
         return config
     }
     
-    override var titlesInSwitcher: [String] {
-        return DataManager.shared.postLanguageTitles
+    override var itemsInSwitcher: [SegementSlideSwitcherItem] {
+        return DataManager.shared.postLanguageTitles.map { .text($0) }
     }
     
     override func showBadgeInSwitcher(at index: Int) -> BadgeType {

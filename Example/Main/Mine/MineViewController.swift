@@ -57,8 +57,8 @@ class MineViewController: BaseTransparentSlideDefaultViewController {
         return config
     }
     
-    override var titlesInSwitcher: [String] {
-        return DataManager.shared.mineLanguageTitles
+    override var itemsInSwitcher: [SegementSlideSwitcherItem] {
+        return DataManager.shared.mineLanguageTitles.map { .text($0) }
     }
     
     override func showBadgeInSwitcher(at index: Int) -> BadgeType {

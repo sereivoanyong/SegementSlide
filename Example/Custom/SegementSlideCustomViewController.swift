@@ -35,8 +35,8 @@ open class SegementSlideCustomViewController: SegementSlideViewController {
     
     open override func setupSwitcher() {
         super.setupSwitcher()
-        segmentedDataSource.titles = titlesInSwitcher
-        segmentedDataSource.numbers = badgesInSwitcher
+        segmentedDataSource.titles = itemsInSwitcher.map { $0.text ?? "" }
+        segmentedDataSource.numbers = itemsInSwitcher.map { $0.badgeNumber ?? 0 }
         segmentedView.dataSource = segmentedDataSource
         segmentedView.contentScrollView = contentView.scrollView
     }
@@ -45,11 +45,7 @@ open class SegementSlideCustomViewController: SegementSlideViewController {
         return 44
     }
     
-    open var titlesInSwitcher: [String] {
-        return []
-    }
-    
-    open var badgesInSwitcher: [Int] {
+    open var itemsInSwitcher: [SegementSlideSwitcherItem] {
         return []
     }
     
@@ -61,8 +57,8 @@ extension SegementSlideCustomViewController: SegementSlideSwitcherDataSource {
         return switcherViewHeight
     }
     
-    public var titles: [String] {
-        return titlesInSwitcher
+    public var items: [SegementSlideSwitcherItem] {
+        return itemsInSwitcher
     }
     
 }

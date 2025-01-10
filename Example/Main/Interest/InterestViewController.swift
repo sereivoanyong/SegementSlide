@@ -33,14 +33,8 @@ class InterestViewController: BaseSegementSlideCustomViewController {
         return headerView
     }
     
-    override var titlesInSwitcher: [String] {
-        return DataManager.shared.interestLanguageTitles
-    }
-    
-    override var badgesInSwitcher: [Int] {
-        let count = DataManager.shared.interestLanguageTitles.count
-        let badges = (0 ..< count).map({ _ in Int.random(in: 0..<10) })
-        return badges
+    override var itemsInSwitcher: [SegementSlideSwitcherItem] {
+        return DataManager.shared.interestLanguageTitles.map { .textBadgeNumber($0, .random(in: 0..<10)) }
     }
     
     override func segementSlideContentViewController(at index: Int) -> SegementSlideContentScrollViewDelegate? {

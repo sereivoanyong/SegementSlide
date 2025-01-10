@@ -136,8 +136,8 @@ class NoticeViewController: UIViewController {
 
 extension NoticeViewController: SegementSlideDefaultSwitcherViewDelegate {
     
-    public var titlesInSegementSlideSwitcherView: [String] {
-        return DataManager.shared.noticeLanguageTitles
+    public var itemsInSegementSlideSwitcherView: [SegementSlideSwitcherItem] {
+        return DataManager.shared.noticeLanguageTitles.map { .text($0) }
     }
     
     public func segementSwitcherView(_ segementSlideSwitcherView: SegementSlideDefaultSwitcherView, didSelectAtIndex index: Int, animated: Bool) {
@@ -161,7 +161,7 @@ extension NoticeViewController: SegementSlideDefaultSwitcherViewDelegate {
 extension NoticeViewController: SegementSlideContentDelegate {
     
     public var segementSlideContentScrollViewCount: Int {
-        return titlesInSegementSlideSwitcherView.count
+        return itemsInSegementSlideSwitcherView.count
     }
     
     public func segementSlideContentScrollView(at index: Int) -> SegementSlideContentScrollViewDelegate? {

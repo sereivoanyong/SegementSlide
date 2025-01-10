@@ -41,8 +41,8 @@ class ExploreViewController: BaseSegementSlideDefaultViewController {
         return config
     }
     
-    override var titlesInSwitcher: [String] {
-        return DataManager.shared.exploreLanguageTitles
+    override var itemsInSwitcher: [SegementSlideSwitcherItem] {
+        return DataManager.shared.exploreLanguageTitles.map { .text($0) }
     }
     
     override func showBadgeInSwitcher(at index: Int) -> BadgeType {
