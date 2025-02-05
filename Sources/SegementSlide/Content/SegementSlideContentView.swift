@@ -233,7 +233,7 @@ extension SegementSlideContentView {
             lastChildViewController.endAppearanceTransition()
         }
         if !isAdded {
-            ()
+            childViewController.didMove(toParent: viewController)
         } else {
             // current child viewController viewDidAppear
             childViewController.endAppearanceTransition()
