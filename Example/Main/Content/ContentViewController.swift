@@ -13,8 +13,7 @@ import MJRefresh
 
 class ContentViewController: BaseTableViewController, SegementSlideContentScrollViewDelegate {
     
-    @objc
-    var scrollView: UIScrollView {
+    var segementSlideScrollView: UIScrollView? {
         return tableView
     }
     

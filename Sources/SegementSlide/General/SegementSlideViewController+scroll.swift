@@ -44,7 +44,7 @@ extension SegementSlideViewController {
                 canChildViewScroll = true
                 resetOtherCachedChildViewControllerContentOffsetY()
             } else {
-                guard let childScrollView = currentSegementSlideContentViewController?.scrollView else {
+                guard let childScrollView = currentSegementSlideContentViewController?.segementSlideScrollView else {
                     resetOtherCachedChildViewControllerContentOffsetY()
                     return
                 }

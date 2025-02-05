@@ -8,11 +8,18 @@
 
 import UIKit
 
-@objc
-public protocol SegementSlideContentScrollViewDelegate where Self: UIViewController {
+public protocol SegementSlideContentScrollViewDelegate: UIViewController {
+
     /// must implement this variable, when use class `SegementSlideViewController` or it's subClass.
     /// you can ignore this variable, when you use `SegementSlideContentView` alone.
-    @objc optional var scrollView: UIScrollView { get }
+    var segementSlideScrollView: UIScrollView? { get }
+}
+
+extension SegementSlideContentScrollViewDelegate {
+
+    public var segementSlideScrollView: UIScrollView? {
+        return nil
+    }
 }
 
 public protocol SegementSlideContentDelegate: AnyObject {

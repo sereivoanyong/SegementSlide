@@ -39,7 +39,7 @@ extension SegementSlideViewController: SegementSlideContentDelegate {
         defer {
             didSelectContentViewController(at: index)
         }
-        guard let childScrollView = childViewController.scrollView else {
+        guard let childScrollView = childViewController.segementSlideScrollView else {
             return
         }
         let key = String(format: "%p", childScrollView)

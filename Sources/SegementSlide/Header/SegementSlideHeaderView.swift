@@ -49,7 +49,7 @@ public class SegementSlideHeaderView: UIView {
         if !(view?.gestureRecognizers?.isEmpty ?? true) {
             return view
         }
-        return delegate.scrollView
+        return delegate.segementSlideScrollView
     }
     
 }
