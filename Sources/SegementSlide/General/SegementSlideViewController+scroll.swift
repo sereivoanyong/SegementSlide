@@ -15,13 +15,15 @@ extension SegementSlideViewController {
             scrollViewDidScroll(parentScrollView, isParent: true)
         }
         let parentContentOffsetY = parentScrollView.contentOffset.y
+        let headerStickyHeight = headerStickyHeight
+        let stickyHeight = headerStickyHeight - headerPinningHeight
         switch innerBouncesType {
         case .parent:
             if !canParentViewScroll {
-                parentScrollView.contentOffset.y = headerStickyHeight
+                parentScrollView.contentOffset.y = stickyHeight
                 canChildViewScroll = true
-            } else if parentContentOffsetY >= headerStickyHeight {
-                parentScrollView.contentOffset.y = headerStickyHeight
+            } else if parentContentOffsetY >= stickyHeight {
+                parentScrollView.contentOffset.y = stickyHeight
                 canParentViewScroll = false
                 canChildViewScroll = true
             } else {

@@ -39,6 +39,7 @@ open class SegementSlideViewController: UIViewController, SegementSlideHeaderVie
     internal var lastChildBouncesTranslationY: CGFloat = 0
     internal var cachedChildViewControllerIndex: Set<Int> = Set()
     
+    public var headerPinningHeight: CGFloat = 0
     public var headerStickyHeight: CGFloat {
         let headerHeight = headerView.frame.height
         switch segementSlideHeaderViewTopInsetReference {
