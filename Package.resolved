@@ -1,6 +1,15 @@
 {
-  "originHash" : "6de2c39750fc2fdf6f8347b15703dc909e004fff6233e1371fdc3e0cbab99fe3",
+  "originHash" : "f1cf46fa6dfd71b74770e8ad592aeea8791c568c77b92a2afec2119dfbbf7076",
   "pins" : [
+    {
+      "identity" : "jxsegmentedview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sereivoanyong/JXSegmentedView",
+      "state" : {
+        "branch" : "sy/main",
+        "revision" : "e06a10e68f9a671562bc0a27de4a10a068f6b27b"
+      }
+    },
     {
       "identity" : "kingfisher",
       "kind" : "remoteSourceControl",

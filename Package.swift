@@ -11,9 +11,10 @@ let package = Package(
     .library(name: "SegementSlide", targets: ["SegementSlide"]),
   ],
   dependencies: [
+    .package(url: "https://github.com/sereivoanyong/JXSegmentedView", branch: "sy/main"),
     .package(url: "https://github.com/onevcat/Kingfisher", from: "8.2.0"),
   ],
   targets: [
-    .target(name: "SegementSlide", dependencies: ["Kingfisher"]),
+    .target(name: "SegementSlide", dependencies: ["JXSegmentedView", "Kingfisher"]),
   ]
 )
