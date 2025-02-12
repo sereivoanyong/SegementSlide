@@ -13,6 +13,15 @@ public enum BouncesType {
     case child
 }
 
+extension SegementSlideViewController {
+
+    public enum HeaderInsetReference {
+
+        case fromEdges
+        case fromSafeArea
+    }
+}
+
 open class SegementSlideViewController: UIViewController, SegementSlideHeaderViewDelegate {
     
     public internal(set) var scrollView: SegementSlideScrollView!
@@ -32,9 +41,10 @@ open class SegementSlideViewController: UIViewController, SegementSlideHeaderVie
     
     public var headerStickyHeight: CGFloat {
         let headerHeight = headerView.frame.height
-        if edgesForExtendedLayout.contains(.top) {
+        switch segementSlideHeaderViewTopInsetReference {
+        case .fromEdges:
             return headerHeight - view.safeAreaInsets.top
-        } else {
+        case .fromSafeArea:
             return headerHeight
         }
     }
@@ -66,15 +76,10 @@ open class SegementSlideViewController: UIViewController, SegementSlideHeaderVie
         return .parent
     }
     
+    open var segementSlideHeaderViewTopInsetReference: HeaderInsetReference = .fromSafeArea
+    
     open func segementSlideHeaderView() -> UIView? {
-        if edgesForExtendedLayout.contains(.top) {
-            #if DEBUG
-            assert(false, "must override this variable")
-            #endif
-            return nil
-        } else {
-            return nil
-        }
+        return nil
     }
     
     open func segementSlideSwitcherView() -> SegementSlideSwitcherDelegate {

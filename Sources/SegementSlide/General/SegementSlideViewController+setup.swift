@@ -11,8 +11,6 @@ import UIKit
 extension SegementSlideViewController {
     
     internal func setup() {
-        extendedLayoutIncludesOpaqueBars = true
-        edgesForExtendedLayout = []
         setupSegementSlideScrollView()
         setupSegementSlideViews()
         setupSegementSlideHeaderView()
@@ -91,9 +89,10 @@ extension SegementSlideViewController {
     
     internal func layoutSegementSlideScrollView() {
         let topLayoutLength: CGFloat
-        if edgesForExtendedLayout.contains(.top) {
+        switch segementSlideHeaderViewTopInsetReference {
+        case .fromEdges:
             topLayoutLength = 0
-        } else {
+        case .fromSafeArea:
             topLayoutLength = view.safeAreaInsets.top
         }
         
