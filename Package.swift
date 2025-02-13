@@ -9,6 +9,7 @@ let package = Package(
   ],
   products: [
     .library(name: "SegementSlide", targets: ["SegementSlide"]),
+    .library(name: "SegmentUIKit", targets: ["SegmentUIKit", "SegementSlide"]),
   ],
   dependencies: [
     .package(url: "https://github.com/sereivoanyong/JXSegmentedView", branch: "sy/main"),
@@ -16,5 +17,6 @@ let package = Package(
   ],
   targets: [
     .target(name: "SegementSlide", dependencies: ["JXSegmentedView", "Kingfisher"]),
+    .target(name: "SegmentUIKit", dependencies: ["SegementSlide"]),
   ]
 )
