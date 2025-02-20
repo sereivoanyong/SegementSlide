@@ -107,6 +107,13 @@ public class SegementSlideContentView: UIView {
 
 extension SegementSlideContentView: UIScrollViewDelegate {
 
+    public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        // Restore layout margins to default
+        for view in scrollView.subviews {
+            view.layoutMargins = .zero
+        }
+    }
+
     public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if decelerate { return }
         scrollViewDidEndScroll(scrollView)
@@ -216,6 +223,7 @@ extension SegementSlideContentView {
         if !isAdded {
             // new child viewController viewDidLoad, viewWillAppear
             viewController.addChild(childViewController)
+            childViewController.view.preservesSuperviewLayoutMargins = true
             scrollView.addSubview(childViewController.view)
         } else {
             // current child viewController viewWillAppear
@@ -231,6 +239,15 @@ extension SegementSlideContentView {
         if let lastIndex = selectedIndex, let lastChildViewController = segementSlideContentViewController(at: lastIndex) {
             // last child viewController viewDidDisappear
             lastChildViewController.endAppearanceTransition()
+
+            if animated {
+                let childView = childViewController.view!
+                var childLayoutMargins = childView.layoutMargins
+                var layoutMargins = layoutMargins
+                childLayoutMargins.left = layoutMargins.left
+                childLayoutMargins.right = layoutMargins.right
+                childView.layoutMargins = childLayoutMargins
+            }
         }
         if !isAdded {
             childViewController.didMove(toParent: viewController)
